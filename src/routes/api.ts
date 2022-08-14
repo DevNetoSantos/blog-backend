@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as PostController from '../controllers/PostController';
 import * as UserController from '../controllers/UserController';
-import { privateRoute } from '../config/passport'; //autorização das rotas
+//import { privateRoute } from '../config/passport'; //autorização das rotas
 import { upload } from "../config/upload";
 
 const router = Router();
