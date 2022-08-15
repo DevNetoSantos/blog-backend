@@ -6,6 +6,24 @@ Blog é uma aplicação Backend, construída por mim para estudos.
 
 A aplicação consiste em um cadastro de matérias, onde podermos criar notícias , deletar, editar , se quisermos mostrar público ou não e listar por categorias.
 
+# Endpoints
+
+- https://blog-backend-spider.herokuapp.com
+
+- https://blog-backend-spider.herokuapp.com/login
+- https://blog-backend-spider.herokuapp.com/logout
+
+- https://blog-backend-spider.herokuapp.com/posts
+- https://blog-backend-spider.herokuapp.com/posts/id
+
+- https://blog-backend-spider.herokuapp.com/users
+- https://blog-backend-spider.herokuapp.com/users/id
+
+- https://blog-backend-spider.herokuapp.com/category
+
+-https://blog-backend-spider.herokuapp.com/profile
+
+
 # Tecnologias utilizadas
 ## Back End
 - nodejs
@@ -17,7 +35,6 @@ A aplicação consiste em um cadastro de matérias, onde podermos criar notícia
 ## Implantação em produção
 - Back end: heroku
 - Banco de dados: heroku
-- OBS: Ainda falta deploy da aplicação
 
 # Como executar o projeto
 
