@@ -5,11 +5,14 @@ import path from 'path';
 import bodyParser from 'body-parser';
 //import passport from 'passport';
 import { MulterError } from 'multer';
+import cors from 'cors';
 
 
 dotenv.config();
 
 const server = express();
+
+server.use(cors());
 
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
