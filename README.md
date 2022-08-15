@@ -21,7 +21,7 @@ A aplicação consiste em um cadastro de matérias, onde podermos criar notícia
 
 - https://blog-backend-spider.herokuapp.com/category
 
--https://blog-backend-spider.herokuapp.com/profile
+- https://blog-backend-spider.herokuapp.com/profile
 
 
 # Tecnologias utilizadas
