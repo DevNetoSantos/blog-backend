@@ -10,7 +10,7 @@ router.post('/login', privateRoute, UserController.login); //fazer login
 router.get('/logout', UserController.logout); //fazer logout
 
 router.get('/posts', PostController.indexPosts); //listar todos posts
-router.get('/users',privateRoute, UserController.indexUsers); // listar todos users
+router.get('/users', UserController.indexUsers); // listar todos users
 router.post('/users', UserController.register); // criar usuário
 router.delete('/users/:id', UserController.deleteUser); // deletar usuário
 router.post('/posts', PostController.createPosts); //criar um post
