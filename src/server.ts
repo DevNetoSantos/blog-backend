@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import MainRoutes from './routes/api';
 import path from 'path';
 import bodyParser from 'body-parser';
-//import passport from 'passport';
+import passport from 'passport';
 import { MulterError } from 'multer';
 import cors from 'cors';
 
@@ -17,7 +17,7 @@ server.use(cors());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
 
-//server.use(passport.initialize());
+server.use(passport.initialize());
 
 server.use(MainRoutes)
 

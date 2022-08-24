@@ -1,46 +1,30 @@
-//Strategy JWT
-
-/*import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import passport from "passport";
-import dotenv from 'dotenv';
-import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt"; //renomear a lib para facilitar leitura.
-import { PrismaClient } from "@prisma/client"; //banco de dados
-import jwt from 'jsonwebtoken'; // gerar token
+import { BasicStrategy } from "passport-http";
+import { UserService } from "../services/UserServices";
 
+const notAuthorize = { status: 401, message: 'Não autorizado'};
 
-dotenv.config();
-
-const prisma = new PrismaClient();
-
-const notAuthorizaedJson = {status: 401, message: "Não autorizado."};
-const options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), //Por onde mandar o token PADRÃO
-  secretOrKey: process.env.JWR_SECRET as string
-}
-
-passport.use(new JWTStrategy(options, async (payload, done) => {
-  const user = await prisma.user.findFirst(payload.id); //buscar meu banco de dados
-  if(user) {
-    return done(null, user);
-  } else {
-    return done(notAuthorizaedJson, false);
+passport.use(new BasicStrategy(async (email, password, done) => {
+  if(email && password) {
+    const user = await UserService.findUser({email, password});
+    if(user) {
+      return done (null, user);
+    }
   }
+  return done(notAuthorize, false);
 }));
 
-export const generateToken = (data: object) => {
-  return jwt.sign(data, process.env.JWR_SECRET as string);
-};
-
 export const privateRoute = (req: Request, res: Response, next: NextFunction) => {
-  const authFunction = passport.authenticate('jwt', (err, user) => {
+  const authFunction = passport.authenticate('basic', (err, user) => {
+    req.user = user;
     if(user) {
       next();
     } else {
-      next(notAuthorizaedJson);
+      next(notAuthorize)
     }
   });
   authFunction(req, res, next);
 };
 
 export default passport;
-*/

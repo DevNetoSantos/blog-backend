@@ -57,18 +57,7 @@ export const indexUsers = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  const { email , password } = req.body;
-  if(email && password) {
-    const user = await UserService.findUser({ email, password });
-    if(user) {
-      //const token = generateToken({id: user.id});
-      res.status(201).json({status: true});
-    } else {
-      res.status(401).json({error: 'email ou passsword incorreto'});
-    }
-  } else {
-    res.status(401).json({error: 'Preencha todos os dados'});
-  }
+  res.status(201).json({status: true});
 };
 
 export const logout = (req: Request, res: Response) => {
