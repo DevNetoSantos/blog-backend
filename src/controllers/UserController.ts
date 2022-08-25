@@ -53,7 +53,7 @@ export const deleteUser = async (req: Request, res: Response) => {
 
 export const indexUsers = async (req: Request, res: Response) => {
   const users = await UserService.findAllUsers();
-  res.status(200).json({users});
+  res.status(200).json(users);
 };
 
 export const login = async (req: Request, res: Response) => {

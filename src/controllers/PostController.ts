@@ -4,7 +4,7 @@ import { UserService } from "../services/UserServices";
 
 export const indexPosts = async (req: Request, res: Response) => {
   const posts = await PostService.findAllPosts();
-  res.status(200).json({posts});
+  res.status(200).json(posts);
 };
 
 export const createCategory = async (req: Request, res: Response) => {
