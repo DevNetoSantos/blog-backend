@@ -10,7 +10,7 @@ export const uploadPhoto = async (req: Request, res: Response) => {
       await sharp(req.file.path)
         .resize(192) //tamanho do arquivo
         .toFormat('jpeg') //formato para salvar
-        .toFile(`./public/media/${req.file.fieldname}.jpg`); //local para salvar arquivo
+        .toFile(`./public/media/${req.file.filename}`); //local para salvar arquivo
 
       await unlink(req.file.path);
 
