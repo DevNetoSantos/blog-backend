@@ -20,6 +20,6 @@ router.delete('/posts/:id', PostController.deletePost); //deletar post
 router.get('/category', PostController.indexCategory); //listar categorias
 router.post('/category', PostController.createCategory); //criar categoria
 
-router.post('/profile', upload.single('avatar'), UserController.uploadPhoto); // Upload de foto 
+router.post('/profile', upload.single('avatar'), PostController.uploadPhoto); // Upload de foto 
 
 export default router;

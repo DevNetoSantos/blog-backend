@@ -1,25 +1,6 @@
 import { Request, Response } from "express";
 //import { generateToken } from "../config/passport";
 import { UserService } from "../services/UserServices";
-import sharp from "sharp";
-import { unlink } from "fs/promises"; // delete image temporaria
-
-
-export const uploadPhoto = async (req: Request, res: Response) => {
-
-  if(req.file) {
-      await sharp(req.file.path)
-        .resize(192) //tamanho do arquivo
-        .toFormat('jpeg') //formato para salvar
-        .toFile(`./public/media/${req.file.filename}`); //local para salvar arquivo
-
-      await unlink(req.file.path);
-
-      res.status(201).json({profile: `${req.file.filename}`});
-  } else {
-    res.status(400).json({error: 'Arquivo inválido.'});
-  }
-};
 
 export const register = async (req: Request, res: Response) => {
   const { name, email, password, role} = req.body;
