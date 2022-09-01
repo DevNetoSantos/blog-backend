@@ -4,6 +4,7 @@ import { UserService } from "../services/UserServices";
 import sharp from "sharp";
 import { unlink } from "fs/promises"; // delete image temporaria
 
+
 export const uploadPhoto = async (req: Request, res: Response) => {
 
   if(req.file) {
