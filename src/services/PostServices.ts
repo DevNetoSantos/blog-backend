@@ -7,6 +7,7 @@ type createDataProps = {
   body: string;
   authorId: number;
   categoryId: number;
+  imageId: number
 };
 
 type updatePostDataProps = {
@@ -59,5 +60,9 @@ export const PostService = {
         id: 'desc'
       }
     });
+  },
+
+  createNameImage: async (name: string) => {
+    return await prisma.image.create({data: {name}});
   },
 };

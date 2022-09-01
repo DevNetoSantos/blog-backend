@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
 import { PostService } from "../services/PostServices";
 import { UserService } from "../services/UserServices";
-
 import sharp from "sharp";
 import { unlink } from "fs/promises"; // delete image temporaria
+import { PrismaClient } from "@prisma/client";
+
+
+const prisma = new PrismaClient()
 
 
 export const uploadPhoto = async (req: Request, res: Response) => {
-
+  const { name } = req.body;
   if(req.file) {
       await sharp(req.file.path)
         .resize(500) //tamanho do arquivo
@@ -15,7 +18,8 @@ export const uploadPhoto = async (req: Request, res: Response) => {
         .toFile(`./public/media/${req.file.filename}`); //local para salvar arquivo
 
       await unlink(req.file.path);
-
+      await prisma.image.create({data: {name: req.file.filename}});
+      
       res.status(201).json({profile: `${req.file.filename}`});
   } else {
     res.status(400).json({error: 'Arquivo inválido.'});
@@ -39,12 +43,12 @@ export const indexCategory = async (req: Request, res: Response) => {
 };
 
 export const createPosts = async (req: Request, res: Response) => {
-  const {title, body, author, categoryId} = req.body;
-  if(title && body && author && categoryId) {
+  const {title, body, author, categoryId, imageId} = req.body;
+  if(title && body && author && categoryId && imageId) {
     const user = await UserService.findOne({id: parseInt(author)});
     if(user) {
       const newPost = await PostService.createPost({
-        title, body, authorId: user.id, categoryId
+        title, body, authorId: user.id, categoryId, imageId
       });
       res.status(201).json({newPost});
     } else {

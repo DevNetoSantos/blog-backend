@@ -26,7 +26,8 @@ model Post {
   categoryId Int
   author     User     @relation(fields: [authorId], references: [id])
   category   Category @relation(fields: [categoryId], references: [id])
-  image      Image[]
+  image      Image    @relation(fields: [imageId], references: [id])
+  imageId    Int
 }
 
 model Category {
@@ -36,8 +37,7 @@ model Category {
 }
 
 model Image {
-  id     Int    @id @default(autoincrement())
-  url    String
-  idPost Int
-  Post   Post   @relation(fields: [idPost], references: [id])
+  id   Int    @id @default(autoincrement())
+  name String
+  Post Post[]
 }
