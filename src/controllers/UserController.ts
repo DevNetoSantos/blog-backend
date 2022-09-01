@@ -3,11 +3,9 @@ import { Request, Response } from "express";
 import { UserService } from "../services/UserServices";
 import sharp from "sharp";
 import { unlink } from "fs/promises"; // delete image temporaria
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
 
 export const uploadPhoto = async (req: Request, res: Response) => {
+
   if(req.file) {
       await sharp(req.file.path)
         .resize(192) //tamanho do arquivo

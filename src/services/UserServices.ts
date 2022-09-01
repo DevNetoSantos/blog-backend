@@ -24,11 +24,6 @@ type createProfileDataProps = {
   userId: number;
 };
 
-type createImageDataProps = {
-  url: string;
-  idPost: number
-}
-
 export const UserService = {
   findAllUsers: async () => {
     return await prisma.user.findMany({
