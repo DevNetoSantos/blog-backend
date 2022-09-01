@@ -24,6 +24,11 @@ type createProfileDataProps = {
   userId: number;
 };
 
+type createImageDataProps = {
+  url: string;
+  idPost: number
+}
+
 export const UserService = {
   findAllUsers: async () => {
     return await prisma.user.findMany({
@@ -52,7 +57,7 @@ export const UserService = {
     });
   },
   createUser: async (data: createUserDataProps) => {
-    return prisma.user.create({data});
+    return await prisma.user.create({data});
   },
   removeUser: async (id: number) => {
     return await prisma.user.delete({where: {id}});
